@@ -1,0 +1,94 @@
+.jonScrollBox_container {
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+}
+.jonScrollBox_substance {
+	list-style: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	margin: 0;
+}
+.jonScrollBox_bar {
+	background: #ddd;
+	position: absolute;
+	right: 5px;
+	z-index: 999999;
+	width: 2px;
+}
+.jonScrollBox_thumb {
+	background: #666 50% 100%;
+	height: 20px;
+	width: 4px;
+	cursor: pointer;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: -1px;
+	border-radius: 2px;
+}
+.jonScrollBox_thumb .jonScrollBox_end {
+	background: #666 50% 0px;
+	height: 10px;
+	width: 4px;
+	overflow: hidden;
+	margin-left: 11px;
+}
+.jonScrollBox_thumbHov {
+	background: #333 50% 100%;
+}
+.jonScrollBox_thumbHov .jonScrollBox_end {
+	background: #333;
+}
+.disable {
+	display: none;
+}
+.noSelect
+{
+	user-select:none;
+	-o-user-select:none;
+	-moz-user-select:none;
+	-khtml-user-select:none;
+	-webkit-user-select:none;
+}
+
+
+
+.jonScroll-light{
+	height: 100px;
+	border: 1px solid #eee;
+	width: 100%;
+	margin-top: 30px;
+	position: relative;
+	padding: 10px 20px 10px 15px;
+	font-size: 12px;
+}
+.jonScroll-light1{
+	height: 50px;
+	border: 1px solid #eee;
+	width: 100px;
+	margin-top: 30px;
+	position: relative;
+	padding: 10px 20px 10px 15px;
+	font-size: 12px;
+}
+.jonScroll-light2{
+	height: 80px;
+	border: 1px solid #eee;
+	width: 100px;
+	margin-top: 30px;
+	position: relative;
+	padding: 10px 20px 10px 15px;
+	font-size: 12px;
+}
+.jonScroll-light3{
+	height: 120px;
+	border: 1px solid #eee;
+	width: 100px;
+	margin-top: 30px;
+	position: relative;
+	padding: 10px 20px 10px 15px;
+	font-size: 12px;
+}
+
