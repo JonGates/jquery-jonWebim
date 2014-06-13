@@ -10,13 +10,6 @@ plugin home: https://github.com/JonGates/jquery-jonWebim
 	var methods={
 		init:function(options){
 			var defaults={
-				axis			: 'y',
-				wheel			: true,
-				wheelSpeed		: 40,
-				wheelLock		: true,
-				scrollInvert	: false,
-				trackSize		: false,
-				thumbSize		: false,
 				theme			: 'light'
 			},
 			options=$.extend({},defaults,options);
