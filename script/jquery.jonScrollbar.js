@@ -1,8 +1,8 @@
 /*
 == jon jquery scrollbars plugin == 
-version: 0.0.0.1 
+version: 1.0.1 
 author: Jon Gates (http://blog.jongates.org) 
-plugin home: https://github.com/JonGates/jquery-jonScrollbar
+plugin home: https://github.com/JonGates/jonScrollbar
 */
 
 ;(function($){
@@ -29,12 +29,6 @@ plugin home: https://github.com/JonGates/jquery-jonScrollbar
 				jonScrollBox.wrapInner("<div class='jonScrollBox_substance' />");
 				jonScrollBox.wrapInner("<div class='jonScrollBox_container' />");
 				jonScrollBox.prepend('<div class="jonScrollBox_bar"><div class="jonScrollBox_track"><div class="jonScrollBox_thumb"><div class="jonScrollBox_end"></div></div></div></div>');
-
-				jonScrollBox.find('.jonScrollBox_thumb').hover(function() {
-					$(this).addClass('jonScrollBox_thumbHov');
-				}, function() {
-					$(this).removeClass('jonScrollBox_thumbHov')
-				});
 
 				this.mousePosition	= 0;
 				this.isHorizontal	= options.axis === 'x';
@@ -108,6 +102,8 @@ plugin home: https://github.com/JonGates/jquery-jonScrollbar
 
 				function start(event){
 					$("body").addClass("noSelect");
+					$('.jonScrollBox_thumb').addClass('jonScrollBox_thumbHov');
+					$('div').attr('unselectable', 'on');//ie6
 					$this.data("mousePosition",$this.data("isHorizontal") ? event.pageX : event.pageY);
 					$this.data("thumbPosition",parseInt($thumb.css($this.data("posiLabel")), 10) || 0);
 					if($this.data("hasTouchEvents")){
@@ -157,6 +153,8 @@ plugin home: https://github.com/JonGates/jquery-jonScrollbar
 
 				function end(){
 					$("body").removeClass("noSelect");
+					$('.jonScrollBox_thumb').removeClass('jonScrollBox_thumbHov');
+					$('div').attr('unselectable', 'off');//ie6
 					$(document).unbind("mousemove", drag);
 					$(document).unbind("mouseup", end);
 					$thumb.unbind("mouseup", end);
@@ -171,11 +169,13 @@ plugin home: https://github.com/JonGates/jquery-jonScrollbar
 				$track		= $scrollbar.find(".jonScrollBox_track"),
 				$thumb		= $scrollbar.find(".jonScrollBox_thumb");
 			var sizeLabelCap  = $this.data("sizeLabel").charAt(0).toUpperCase() + $this.data("sizeLabel").slice(1).toLowerCase();
-				$this.data("viewportSize",$viewport[0]['offset'+ sizeLabelCap]);
+				//$this.data("viewportSize",$viewport[0]['offset'+ sizeLabelCap]);
+				$this.data("viewportSize",$viewport.outerHeight());
 				$this.data("contentSize",$overview[0]['scroll'+ sizeLabelCap]);
 				$this.data("contentRatio",$this.data("viewportSize") / $this.data("contentSize"));
-				$this.data("trackSize",$this.data("trackSize") || $this.data("viewportSize"));
-				$this.data("thumbSize",Math.min($this.data("trackSize"), Math.max(0, ($this.data("thumbSize") || ($this.data("trackSize") * $this.data("contentRatio"))))));
+				//$this.data("trackSize",$this.data("trackSize") || $this.data("viewportSize"));
+				$this.data("trackSize",$this.data("viewportSize"));
+				$this.data("thumbSize",Math.min($this.data("trackSize"), Math.max(0, (($this.data("trackSize") * $this.data("contentRatio"))))));
 				$this.data("trackRatio",$this.data("thumbSize") ? ($this.data("contentSize") - $this.data("viewportSize")) / ($this.data("trackSize") - $this.data("thumbSize")) : ($this.data("contentSize") / $this.data("trackSize")));
 
 			$scrollbar.toggleClass("disable", $this.data("contentRatio") >= 1);

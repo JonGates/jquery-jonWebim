@@ -10,6 +10,12 @@ plugin home: https://github.com/JonGates/jquery-jonWebim
 	var methods={
 		init:function(options){
 			var defaults={
+				autoLogin		: true,
+				noticeContent	: '公告内容',
+				msgMaxSize		: 300,
+				sendPicture		: true,
+				msgSound		: true,
+				msgApi			: 'http://www.baidu.com/',
 				theme			: 'light'
 			},
 			options=$.extend({},defaults,options);
@@ -450,14 +456,14 @@ plugin home: https://github.com/JonGates/jquery-jonWebim
 				html	+=	("	</div>");
 
 			return this.each(function(){
-				var $this		= $(this);
+				var $this = $(this);
 				id=$this.get(0).id;
 				$('#'+id).html(html);
 				$this.jonWebim("initialize");
 			});
 		},
 		initialize:function(){
-			var $this		= $(this);
+			var $this = $(this);
 			// 批量绑定父页面的用户聊天按钮 
 			$("span[id^=imjs-embed-user-]").click(function() {
 				var json=decodeURIComponent($(this).attr('data'));
@@ -494,6 +500,7 @@ plugin home: https://github.com/JonGates/jquery-jonWebim
 					$('#imjs-main-contact-list').show();
 				}
 				$this.jonWebim("user_list_hight");
+				$("#imjs-user-list").jonScrollbar('setSize');
 			});
 
 			// 点击系统信息 
@@ -503,15 +510,9 @@ plugin home: https://github.com/JonGates/jquery-jonWebim
 			});
 
 
-			//删除联系人列表中的联系人
-			$('.webim-close').click(function() {
-				alert('del '+$(this).parent().attr("id"));
-				$(this).parent().find('.webim-status').attr('class','webim-status webim-username-offline');
-				return false;
-			});
-
 			$this.jonWebim("user_list_hight");
 			$this.jonWebim("bing_user_list");
+			
 
 			$("#imjs-body-content-talk").jonScrollbar({
 				theme:"msg"
@@ -554,6 +555,12 @@ plugin home: https://github.com/JonGates/jquery-jonWebim
 				$(this).find('.webim-status').attr('class','webim-status webim-username-online');
 				return false;
 			});
+			//删除联系人列表中的联系人
+			$('.webim-close').click(function() {
+				alert('del '+$(this).parent().attr("id"));
+				$(this).parent().find('.webim-status').attr('class','webim-status webim-username-offline');
+				return false;
+			});
 			// IE6兼容 删除按钮  
 			$('.imjs-open .c-li').hover(function() {
 				$(this).find('.webim-close').show();
@@ -591,6 +598,7 @@ plugin home: https://github.com/JonGates/jquery-jonWebim
 			}else{
 				$('#imjs-user-list').attr('style', 'height: 0px;');
 			}
+
 		},
 		/* tab切换 */
 		tab:function(id){
