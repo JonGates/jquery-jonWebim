@@ -27,6 +27,5 @@ jquery.jonScrollbar.js [x](https://github.com/JonGates/jquery-jonScrollbar/)
 	</script>
 
 ###  后续版本介绍：
-v.0.0.0.2 加入发送信息列表<br/>
 v.0.0.0.3 加入删除用户列表<br/>
 v.0.0.0.4 支持聊天记录Web Storage(需要浏览器支持)<br/>
